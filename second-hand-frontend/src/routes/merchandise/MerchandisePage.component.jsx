@@ -1,7 +1,9 @@
-import { Fragment } from "react";
-import { useParams } from "react-router";
+import { Fragment } from 'react';
+import { useParams } from 'react-router-dom';
 
-const merchandise = () => {
+const MerchandisePage = () => {
   const { id } = useParams();
   return <Fragment></Fragment>;
 };
+
+export default MerchandisePage;

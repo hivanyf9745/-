@@ -1,7 +1,7 @@
-import { Fragment } from "react"
+import { Fragment } from 'react';
 
-const InputForm = ()=>{
-    return <Fragment></Fragment>
-}
+const InputForm = () => {
+  return <Fragment></Fragment>;
+};
 
 export default InputForm;

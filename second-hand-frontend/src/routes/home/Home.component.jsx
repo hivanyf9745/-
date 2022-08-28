@@ -1,6 +1,7 @@
-import { Fragment } from "react"
+import { Fragment } from 'react';
 
-const Home = ()=>{
-    return <Fragment>
-    </Fragment>
-}
+const Home = () => {
+  return <Fragment></Fragment>;
+};
+
+export default Home;
