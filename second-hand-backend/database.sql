@@ -5,7 +5,7 @@
 --     description VARCHAR(255)
 -- );
 
-CREATE DATABASE IF NOT EXISTS `xian`;
+CREATE DATABASE IF NOT EXISTS xian;
 
 CREATE TABLE users(
     userID SERIAL PRIMARY KEY,
@@ -27,8 +27,7 @@ CREATE TABLE merchandisePhotos(
     merchanPhotoID SERIAL PRIMARY KEY,
     merchanPhotoURL VARCHAR(255),
     merchanPhotoCreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    merchanID INT,
-    FOREIGN KEY (merchanID) REFERENCES merchandises(merchanID)
+    merchanID INT
 );
 
 CREATE TABLE merchandises(
@@ -45,6 +44,5 @@ CREATE TABLE merchandises(
     FOREIGN KEY (merchanType) REFERENCES merchanTypes(merchanTypeID)
 );
 
-ALTER TABLE merchandisePhotos ADD COLUMN merchanID INT;
 ALTER TABLE merchandisePhotos ADD CONSTRAINT merchandisePhotos_merchandises_fkey FOREIGN KEY (merchanID) REFERENCES merchandises(merchanID);
     
