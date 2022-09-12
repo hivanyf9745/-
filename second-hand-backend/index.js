@@ -1,6 +1,6 @@
 const { Pool, Client } = require('pg');
 const connectionString =
-  'postgresql://postgres:new_password@127.0.0.1:5432/second-hand';
+  'postgresql://postgres:new_password@127.0.0.1:5432/xian';
 const pool = new Pool({
   connectionString,
 });
