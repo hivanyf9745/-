@@ -1,35 +1,63 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+
+import EditTodo from "./EditTodo";
 
 const ListTodos = () => {
+  const [todos, setTodos] = useState([]);
+
+  // Delete Function
+  const deleteTodo = async (id) => {
+    try {
+      const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: "delete",
+      });
+      setTodos(todos.filter((todo) => todo.todo_id !== id));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const getTodos = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/todos");
+      const jsonData = await response.json();
+
+      setTodos(jsonData);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  console.log(todos);
+
   return (
     <Fragment>
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {todos.map((todo) => (
+            <tr key={todo.todo_id}>
+              <td>{todo.description}</td>
+              <td><EditTodo todo={todo} /></td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => deleteTodo(todo.todo_id)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Fragment>
