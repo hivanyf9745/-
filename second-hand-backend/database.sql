@@ -1,4 +1,11 @@
-CREATE DATABASE IF NOT EXISTS `xian`;
+-- CREATE DATABASE IF NOT EXISTS `perntodo`;
+
+-- CREATE TABLE todo(
+--     todo_id SERIAL PRIMARY KEY,
+--     description VARCHAR(255)
+-- );
+
+CREATE DATABASE IF NOT EXISTS xian;
 
 CREATE TABLE users(
     userID SERIAL PRIMARY KEY,
@@ -37,6 +44,5 @@ CREATE TABLE merchandises(
     FOREIGN KEY (merchanType) REFERENCES merchanTypes(merchanTypeID)
 );
 
-ALTER TABLE merchandisePhotos ADD COLUMN merchanID INT;
 ALTER TABLE merchandisePhotos ADD CONSTRAINT merchandisePhotos_merchandises_fkey FOREIGN KEY (merchanID) REFERENCES merchandises(merchanID);
     
