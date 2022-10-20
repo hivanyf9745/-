@@ -1,26 +1,21 @@
-// import reactLogo from './assets/react.svg';
-import './App.css';
-import { Routes } from 'react-router-dom';
-import { MainNav } from './routes/navigation/Main-nav.component';
-import { Home } from './routes/home/Home.component';
-import { MerchandisePage } from './routes/merchandise/MerchandisePage.component';
-import { InputForm } from './routes/inputForm/InputForm.component';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import { fetchProducts } from "./features/reducerSlices/apiData";
+import MainNav from "./routes/navigation/Main-nav.component";
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<MainNav />}>
-          <Route index element={<Home />} />
-          <Route
-            path='/merchandise/:id'
-            element={<MerchandisePage id={merchandiseId} />}
-          />
-          <Route path='/input-form' element={<InputForm />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path='/' element={<MainNav />}></Route>
+    </Routes>
   );
-}
+};
 
 export default App;
